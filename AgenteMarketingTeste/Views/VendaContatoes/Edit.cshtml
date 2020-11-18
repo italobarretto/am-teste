@@ -1,0 +1,52 @@
+﻿@model AgenteMarketingTeste.Models.ViewModels.VendaContatoFormViewModel
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Venda</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VendaContato.VendaContatoId" />
+            <div class="form-group">
+                <label asp-for="@(Model.Contatos.FirstOrDefault().Nome)" class="control-label"></label>
+                <select asp-for="VendaContato.ContatoId" class="form-control" asp-items="@(new SelectList(Model.Contatos,"ContatoId","Nome"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendaContato.DataVenda" class="control-label"></label>
+                <input asp-for="VendaContato.DataVenda" class="form-control" />
+                <span asp-validation-for="VendaContato.DataVenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendaContato.Valor" class="control-label"></label>
+                <input asp-for="VendaContato.Valor" class="form-control" />
+                <span asp-validation-for="VendaContato.Valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@(Model.Produtos.FirstOrDefault().NomeProduto)" class="control-label"></label>
+                <select asp-for="VendaDetalheContato.ProdutoId" class="form-control" asp-items="@(new SelectList(Model.Produtos,"ProdutoId","NomeProduto"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendaDetalheContato.Quantidade" class="control-label"></label>
+                <input asp-for="VendaDetalheContato.Quantidade" class="form-control" />
+                <span asp-validation-for="VendaDetalheContato.Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

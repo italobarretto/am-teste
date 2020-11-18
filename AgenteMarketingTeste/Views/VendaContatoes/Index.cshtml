@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AgenteMarketingTeste.Models.ViewModels.VendaFormViewModel>
+
+@{
+    ViewData["Title"] = "Vendas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Adicionar nova</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VendaContatoId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.VendaContatoId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.VendaContatoId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
